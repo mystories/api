@@ -1,0 +1,3 @@
+php artisan make:migration create_articles_table --create=articles
+Created Migration: 2016_07_30_030358_create_articles_table
+
