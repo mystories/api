@@ -1,27 +1,52 @@
-# Laravel PHP Framework
+mystories api模块
+=======
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+mystories是一个新闻阅读类app服务端服务层的demo,这是用php语言实现的一个api接口模块。
+本模块使用laraval框架。依赖另一个模块提供rpc服务（https://github.com/mystories/service.git）。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+安装
+------------
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-## Official Documentation
+从github下载源码:
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+```
+git clone https://github.com/mystories/api.git
+```
 
-## Contributing
+运行
+------------
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+根据自己习惯配置好apache或者nginx即可, 需要对PHP和laravel有一定的了解。
+下面是一个示例的apache配置:
 
-## Security Vulnerabilities
+```
+<VirtualHost *:8092>
+        DocumentRoot "/work/mystories/api/public"
+        <IfModule mod_rewrite.c>
+                RewriteEngine on
+                RewriteRule !\.(txt|js|css|png|gif|jpg|html|php|gz)$  /index.php [QSA,PT,L]
+        </IfModule>
+        <Directory "/work/mystories/api/public">
+                 Options Indexes FollowSymLinks
+                 AllowOverride None
+                 AllowOverride All
+                 Allow from all
+                 Require all granted
+        </Directory>
+</VirtualHost>
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+启动后,在浏览器输入下面的url即可测试接口:
 
-## License
+```
+http://localhost:8092/article
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+文档
+------------
+
+* article:获取文章列表
+
+* article/{id}:获取文章详情
+
